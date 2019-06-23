@@ -1,0 +1,77 @@
+<div class="shadow p-3 mb-5 bg-white rounded">
+  <div class="row">
+
+    <!-- Display Document Section -->
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          List of Documents
+        </div>
+
+        <div *ngIf="ifAnyError" class="alert alert-danger" style="margin-top: 15px" role="alert">
+            <h4 class="alert-heading">Database Error!</h4>
+            <p>{{ errorAlertMessage }}</p>
+        </div>
+
+        <div class="card-body">  
+          <table class="table table-sm table-hover table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">File Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let file of allfiles">
+                    <td>{{ file.sl }}</td>
+                    <td>{{ file.originalname }}</td>
+                    <td>{{ file.contentType }}</td>                    
+                    <td>{{ file.desc }}</td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-success" style="margin-left: auto; margin-right: 5px" (click)="downloadDoc(file.filename, file.originalname, file.contentType)">Download</button>
+                        <button type="button" class="btn btn-sm btn-danger" style="margin-right: 30px" (click)="deleteDoc(file.filename)">Delete</button>
+                    </td>
+                  </tr>   
+              </tbody>
+          </table>
+        </div>  
+      </div>
+    </div>
+
+    <!-- Upload Document Section -->
+    <div class="col-sm-12" style="margin-top:15px">
+      <div class="card">
+        <form class="form-horizontal" action="" method=""> 
+        <div class="card-header">
+          Upload New Documents
+        </div>
+        <div class="card-body bg-light">  
+           
+            <div class="input-group input-group-sm mb-3 row">
+              <label for="email" class="col-sm-4 col-form-label col-form-label-sm">Upload a Document</label>
+              <div class="custom-file">
+                <input type="file" class="form-control-sm custom-file-input" name="inputGroupFile" id="inputGroupFile" (change)="selectFile($event.target)" ng2FileSelect [uploader]="uploader" >
+                <label class="custom-file-label col-form-label-sm" id="inputGroupLable" for="inputGroupFile">Choose file</label>
+              </div>
+            </div>
+
+            <div class="input-group input-group-sm mb-3 row">
+                <label for="email" class="col-sm-4 col-form-label col-form-label-sm">Description</label>
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="fileDesc" [ngModelOptions]="{standalone: true}"  name="description" id="description" placeholder="Description">
+            </div>          
+        </div>
+        <div class="card-footer text-muted">
+          <div class="row">
+            &nbsp;&nbsp;&nbsp;Go to&nbsp;<a href="" [routerLink]="['/list-user']">Users List</a>
+            <button class="btn btn-primary btn-sm" style="margin-left: auto; margin-right: 5px" (click)="uploadAndResetForm();" [disabled]="!uploader.getNotUploadedItems().length">Upload</button>
+            <button class="btn btn-secondary btn-sm" style="margin-right: 30px" (click)="fetchFileList();">Refresh Page</button>
+          </div>   
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
