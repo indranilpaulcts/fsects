@@ -24,12 +24,14 @@ pipeline {
         }
         stage('Launch Middleware') {
             steps {
-                bat 'npm run dev'
+                dir("${JENKINS_HOME}\\workspace\\fsectsproject_master\\middleware"){
+                    bat 'npm run dev'
+                }                
             }
         }
         stage('Launch UI') {
             steps {
-                dir('ui'){
+                dir("${JENKINS_HOME}\\workspace\\fsectsproject_master\\ui"){
                     bat 'ng serve --open'
                 }
             }
