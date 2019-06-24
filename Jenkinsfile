@@ -10,15 +10,16 @@ pipeline {
         }
         stage('NPM Install for UI') {
             steps {
-                bat 'cd ui'
-                bat 'npm install'
+                dir("${JENKINS_HOME}\workspace\fsectsproject_master\ui"){
+                    bat 'npm install'
+                } 
             }
         }
         stage('NPM Install for Middleware') {
             steps {
-                bat 'cd ..'
-                bat 'cd middleware'
-                bat 'npm install'
+                dir("${JENKINS_HOME}\workspace\fsectsproject_master\middleware"){
+                    bat 'npm install'
+                }                
             }
         }
         stage('Launch Middleware') {
@@ -26,11 +27,11 @@ pipeline {
                 bat 'npm run dev'
             }
         }
-        stage('Launch MongoDB') {
+        stage('Launch UI') {
             steps {
-                bat 'cd ..'
-                bat 'cd ui'
-                bat 'ng serve --open'
+                dir('ui'){
+                    bat 'ng serve --open'
+                }
             }
         }
     }
