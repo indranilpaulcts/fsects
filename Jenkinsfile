@@ -10,14 +10,14 @@ pipeline {
         }
         stage('NPM Install for UI') {
             steps {
-                dir("${JENKINS_HOME}\workspace\fsectsproject_master\ui"){
+                dir("${JENKINS_HOME}\\workspace\\fsectsproject_master\\ui"){
                     bat 'npm install'
                 } 
             }
         }
         stage('NPM Install for Middleware') {
             steps {
-                dir("${JENKINS_HOME}\workspace\fsectsproject_master\middleware"){
+                dir("${JENKINS_HOME}\\workspace\\fsectsproject_master\\middleware"){
                     bat 'npm install'
                 }                
             }
