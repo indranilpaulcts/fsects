@@ -22,17 +22,17 @@ pipeline {
                 }                
             }
         }
-        stage('Launch Middleware') {
+        stage('Test for Middleware') {
             steps {
                 dir("${JENKINS_HOME}\\workspace\\fsectsproject_master\\middleware"){
-                    bat 'npm run dev'
+                    bat 'npm test'
                 }                
             }
         }
-        stage('Launch UI') {
+        stage('Test for UI') {
             steps {
                 dir("${JENKINS_HOME}\\workspace\\fsectsproject_master\\ui"){
-                    bat 'ng serve --open'
+                    bat 'npm test'
                 }
             }
         }
