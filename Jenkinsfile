@@ -2,20 +2,33 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone') {
+        stage('Clone Branches') {
             steps {
                bat 'git pull origin ui'
                bat 'git pull origin middleware'
             }
         }
-        stage('Test') {
+        stage('NPM Install for UI') {
             steps {
-                bat 'dir'
+                bat 'cd ui'
+                bat 'npm install'
             }
         }
-        stage('Deploy') {
+        stage('NPM Install for Middleware') {
             steps {
-                bat 'dir'
+                bat 'cd ..\middleware'
+                bat 'npm install'
+            }
+        }
+        stage('Launch Middleware') {
+            steps {
+                bat 'npm run dev'
+            }
+        }
+        stage('Launch MongoDB') {
+            steps {
+                bat 'cd ..\ui'
+                bat 'ng serve --open'
             }
         }
     }
