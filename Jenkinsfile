@@ -25,7 +25,7 @@ pipeline {
         stage('Test for UI') {
             steps {
                 dir("${JENKINS_HOME}\\workspace\\fsectsproject_master\\ui"){
-                    bat 'npm test'
+                    bat 'ng build'
                 }
             }
         }
