@@ -21,20 +21,6 @@ pipeline {
                     bat 'npm install'
                 }                
             }
-        }        
-        stage('Test for UI') {
-            steps {
-                dir("${JENKINS_HOME}\\workspace\\fsectsproject_master\\ui"){
-                    bat 'ng build'
-                }
-            }
-        }
-        stage('Test for Middleware') {
-            steps {
-                dir("${JENKINS_HOME}\\workspace\\fsectsproject_master\\middleware"){
-                    bat 'npm start'
-                }                
-            }
         }
     }
 }
