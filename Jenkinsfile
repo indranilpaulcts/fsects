@@ -21,19 +21,19 @@ pipeline {
                     bat 'npm install'
                 }                
             }
-        }
-        stage('Test for Middleware') {
-            steps {
-                dir("${JENKINS_HOME}\\workspace\\fsectsproject_master\\middleware"){
-                    bat 'npm test'
-                }                
-            }
-        }
+        }        
         stage('Test for UI') {
             steps {
                 dir("${JENKINS_HOME}\\workspace\\fsectsproject_master\\ui"){
                     bat 'npm test'
                 }
+            }
+        }
+        stage('Test for Middleware') {
+            steps {
+                dir("${JENKINS_HOME}\\workspace\\fsectsproject_master\\middleware"){
+                    bat 'npm start'
+                }                
             }
         }
     }
