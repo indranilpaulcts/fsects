@@ -16,7 +16,8 @@ pipeline {
         }
         stage('NPM Install for Middleware') {
             steps {
-                bat 'cd ..\middleware'
+                bat 'cd ..'
+                bat 'cd middleware'
                 bat 'npm install'
             }
         }
@@ -27,7 +28,8 @@ pipeline {
         }
         stage('Launch MongoDB') {
             steps {
-                bat 'cd ..\ui'
+                bat 'cd ..'
+                bat 'cd ui'
                 bat 'ng serve --open'
             }
         }
